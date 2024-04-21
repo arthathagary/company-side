@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/nav-bar/navbar";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { FloatingNavDemo } from "@/components/nav-bar/floating-navbar";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* <Navbar /> */}
+          <FloatingNavDemo />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
